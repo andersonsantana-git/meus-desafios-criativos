@@ -1,0 +1,37 @@
+Atue como um especialista em N8N.
+
+Crie uma automação que confirmar agendamento de consulta em clínica ou atendimento em barbearia ou salão de beleza. 
+
+Público:
+Recepção ou equipe que gerencia a agenda de consultório, barbearia e salão de beleza.
+
+Ferramentas envolvidas:
+Google Calendar; N8N; WhatsApp; Google Sheets
+
+Fluxo:
+Consultar a agenda, consultar tabela de clientes, confirmar o agendamento com clientes com 2 horas de antecedência, marcar na tabela como confirmado ou cancelado.
+
+
+Nós no N8N:
+
+Schedule Trigger -> Google Calendar (Get Many) -> Google Sheets -> Filter -> Loop Over Items -> WhatsApp -> Google Sheets
+
+
+Funcionamento:
+
+Schedule Trigger: roda a cada 15 minutos;
+
+Google Calendar, Get Many: busca eventos que começam nas próximas 2 horas; 
+
+Google Sheets: buscar dados do cliente e status se já confirmou ou não;
+
+Filter: mantém só os que ainda não tiveram lembrete enviado (campo na planilha); 
+
+Loop Over Items: percorre um agendamento por vez;
+
+WhatsApp, Send Template: envia o lembrete. Aqui é obrigatório usar template aprovado pela Meta, pois a conversa normalmente já passou da janela de 24h. 
+
+Google Sheets, Update: marca lembrete_enviado = sim, evitando mensagens repetidas.
+
+
+
